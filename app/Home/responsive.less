@@ -1,0 +1,147 @@
+.common-desktop() {
+    #siteNav ul li {
+        display: inline;
+        list-style: none;
+        font-size: 25px;
+        line-height: 25px;
+    }
+    .subtitle {
+        font-size: 70px;
+        line-height:70px;
+        margin:30px;
+    }
+    .navButton{
+        display: none;
+    }
+    .nav-collapse {
+        display: block;
+    }
+    #siteNav a {
+        color: black;
+        padding: 0 10px;
+    }
+}
+.common-medium() {
+    .subtitle {
+        font-size: 70px;
+        line-height:70px;
+        margin:30px;
+    }
+    .navButton {
+        display: block;
+        margin: 40px;
+    }
+    #siteNav {
+        float: none;
+    }
+    .light, .dark {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    header .container {
+        width: 100%;
+    }
+    .companyLogo {
+        float:none !important;
+        padding:0 !important;
+    }
+    #siteNav ul {
+        font-size: 25px;
+        line-height: 25px;
+        list-style: none;
+        font-family: 'Lato',sans-serif;
+        font-weight: 300;
+        background: #2D3138;
+        margin: 0;
+    }
+
+    #siteNav ul li {
+        border-bottom: 1px solid #C2C2C2;
+        text-align: center;
+        list-style: none;
+    }
+
+    #siteNav a {
+        color: white;
+        display: block;
+        padding: 15px 0px;
+    }
+}
+
+@media (min-width:1200px) {
+    .heroImg {
+        height: 550px !important;
+    }
+
+    #siteNav {
+        margin: 50px 0 45px 0;
+    }
+
+    .common-desktop();
+}
+
+@media(min-width:992px) and (max-width:1199px) {
+    .light, .dark {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    #siteNav {
+        margin:50px;
+    }
+
+    .common-desktop();
+}
+
+@media (min-width:768px) and (max-width:991px) {
+    .heroBg{
+        height:800px;
+    }
+
+    .about {
+        width:90%;
+    }
+
+    .common-medium();
+
+}
+
+@media (max-width:768px) {
+    .resContainer {
+        padding: 20px;
+    }
+    
+    #site-title img {
+        max-width: 35%;
+        margin-left: 10px;
+    }
+    
+    .about {
+        width:90%;
+        padding:20px;
+    }
+    
+    .common-medium();
+    
+}
+
+@media (max-width:480px) {
+    .navButton {
+        display: block;
+        margin: 30px;
+    }
+    #siteNav {
+        float: none;
+    }
+    .subtitle {
+        font-size: 40px;
+        line-height:40px;
+    }
+    .cover {
+        height: calc(~"100% - 104px");
+    }
+    .companyLogo {
+        float:none !important;
+        padding:0 !important;
+    }
+}

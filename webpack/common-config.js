@@ -10,21 +10,21 @@ module.exports = function(options) {
         // second: reactEntry("second")
     };
     var loaders = {
-        "jsx": options.hotComponents ? ["react-hot-loader", "jsx-loader"] : "jsx-loader",
-        "json": "json-loader",
-        "json5": "json5-loader",
-        "txt": "raw-loader",
-        "png|jpg|jpeg|gif|svg": "url-loader?limit=10000",
-        "woff|woff2": "url-loader?limit=100000",
-        "ttf|eot": "file-loader",
-        "html": "html-loader"
+        "jsx": options.hotComponents ? ["react-hot", "jsx"] : "jsx",
+        "json": "json",
+        "json5": "json5",
+        "txt": "raw",
+        "png|jpg|jpeg|gif|svg": "url?limit=10000",
+        "woff|woff2": "url?limit=100000",
+        "ttf|eot|ico": "file",
+        "html": "html"
     };
     var stylesheetLoaders = {
-        "css": "css-loader",
-        "less": "css-loader!less-loader",
+        "css": "css",
+        "less": "css!less",
     };
     var additionalLoaders = [
-         { test: /\.jsx$|\.js$/, loader: "babel-loader", exclude:/node_modules/ }
+         { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules/ }
     ];
     var alias = {
 
@@ -35,7 +35,7 @@ module.exports = function(options) {
     var externals = [
 
     ];
-    var modulesDirectories = ["web_modules", "node_modules"];
+    var modulesDirectories = ["web_modules", "node_modules", "common_modules"];
     var extensions = ["", ".web.js", ".js", ".jsx"];
     var root = path.join(__dirname, "../app");
     var publicPath = options.devServer ?
@@ -67,7 +67,7 @@ module.exports = function(options) {
                 });
             }
         },
-        new webpack.PrefetchPlugin("react"),
+        new webpack.PrefetchPlugin("react/addons"),
         new webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment")
     ];
     if(options.prerender) {

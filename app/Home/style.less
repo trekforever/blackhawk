@@ -1,0 +1,185 @@
+@import "~animate.css/animate.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~mixins.less";
+
+@import url('//fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Lato:300,400,700');
+
+a {
+    color:#00A5F8;
+}
+body {
+    font-family: 'Lato',sans-serif;
+    margin: 0;
+    padding: 0;
+}
+html, body, .app, .content, .home{
+    height:100%;
+}
+.cover {
+    height: calc(~"100% - 130px");
+}
+.center {
+    text-align: center;
+}
+.resContainer {
+    padding: 20px 0px;
+}
+img.profile {
+    width:150px;
+    display:block;
+    margin:0 auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) inset;
+    padding: 5px;
+    border: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+p.subheader {
+    color:#999;
+    padding-top:5px;
+    text-align:center;
+}
+.home {
+    a:hover {
+        text-decoration: none;
+        color: #00CA4C;
+    }
+    #siteNav a:hover {
+        text-decoration: none;
+        color: #0080ff;
+    }
+    ul.socialLinks li a:hover{
+        color:#0088cc;
+    }
+}
+.heroBg {
+  background:url("./assets/bg1.jpg") no-repeat top;  
+  background-size:cover;
+  height: 100%;
+}
+.about {
+    background: white;
+    position: absolute;
+    min-height: 300px;
+    top: 50px;
+    left: 0;
+    right: 0;
+    padding:40px;
+    margin:auto;
+}
+.wrapper {
+    position:relative;
+    overflow:hidden;
+    height:100%;
+    max-height: 800px;
+}
+#header {
+    padding: 0;
+    margin: 0;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.subtitle {
+    font-family: 'Bilbo Swash Caps',cursive;
+}
+
+.navButton {
+    float: right;
+}
+
+#siteNav {
+    float: right;
+}
+
+#siteNav ul li {
+    list-style: none;
+    font-family: 'Lato',sans-serif;
+    font-weight: 300;
+}
+
+#site-title img,.subtitle {
+    float: left;
+}
+
+.heroImg {
+    position: relative;
+    margin-top: -1px;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
+.heroImg img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+    max-width: 100%;
+}
+
+h2 {
+    font-family: 'Lato',sans-serif;
+    text-align: center;
+}
+
+.light {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 35px;
+    color: #000;
+}
+ul.socialLinks {
+    margin:0;padding:0;
+    text-align: center;
+    li {
+        font-size:40px;
+        padding:0 10px;
+        display: inline-block;
+        list-style: none;
+        a {
+            .transition(all 0.2s ease);
+            color:#222222;
+            display:block;
+        }
+    }
+}
+
+.darkBg {
+    background-color: #2a2a2a;
+    color: #FFFFFF;
+}
+
+.darkBg h2 {
+    font-weight: 700;
+}
+
+.companyLogo {
+    margin: 0 auto;
+    display: block;
+    float: left;
+    padding-right: 20px;
+}
+
+.darkBg2 {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.nav-collapse {
+    display: none;
+    &.toggled {
+        display: block;
+    }
+}
+
+@import "./responsive.less";

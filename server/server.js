@@ -3,7 +3,7 @@ module.exports = function(options) {
     var express = require("express");
     var bodyParser = require("body-parser");
     var path = require("path");
-    var uuid = require("uuid");
+    var favicon = require('serve-favicon');
 
     // require the page rendering logic
     var renderApplication = options.prerender ?
@@ -20,14 +20,14 @@ module.exports = function(options) {
     var COMMONS_URL = publicPath + [].concat(stats.assetsByChunkName.commons)[0];
 
     var app = express();
-
+    app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
     // serve the static assets
     app.use("/_assets", express.static(path.join(__dirname, "..", "build", "public"), {
         maxAge: "200d" // We can cache them as they include hashes
     }));
     app.use("/", express.static(path.join(__dirname, "..", "public"), {
     }));
-
+    app.disable('x-powered-by');
     app.use(bodyParser.json());
 
     // REST APIs
