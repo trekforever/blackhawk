@@ -7,6 +7,10 @@
 
 a {
     color:#00A5F8;
+    &:focus {
+        outline: 0;
+        text-decoration: none;
+    }
 }
 body {
     font-family: 'Lato',sans-serif;
@@ -92,8 +96,14 @@ p.subheader {
 .subtitle {
     font-family: 'Bilbo Swash Caps',cursive;
 }
-
+.navContainer {
+    margin: 0 -15px;
+}
 .navButton {
+    outline: 0;
+    &:focus {
+        outline:0;
+    }
     float: right;
 }
 
