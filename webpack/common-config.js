@@ -24,7 +24,7 @@ module.exports = function(options) {
         "less": "css!less",
     };
     var additionalLoaders = [
-         { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules/ }
+         { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules|vendor/ }
     ];
     var alias = {
 
@@ -35,7 +35,7 @@ module.exports = function(options) {
     var externals = [
 
     ];
-    var modulesDirectories = ["web_modules", "node_modules", "common_modules"];
+    var modulesDirectories = ["vendor", "node_modules", "common_modules"];
     var extensions = ["", ".web.js", ".js", ".jsx"];
     var root = path.join(__dirname, "../app");
     var publicPath = options.devServer ?
@@ -113,6 +113,8 @@ module.exports = function(options) {
         );
     }
 
+    // Ignore Plugins
+    plugins.push(new webpack.IgnorePlugin(/vertx/));
     return {
         entry: entry,
         output: output,

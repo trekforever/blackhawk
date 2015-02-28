@@ -3,8 +3,6 @@
 @import "~font-awesome/css/font-awesome.css";
 @import "~mixins.less";
 
-@import url('//fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Lato:300,400,700');
-
 a {
     color:#00A5F8;
     &:focus {
@@ -22,6 +20,7 @@ html, body, .app, .content, .home{
 }
 .cover {
     height: calc(~"100% - 130px");
+    max-height:800px;
 }
 .center {
     text-align: center;
@@ -51,6 +50,9 @@ p.subheader {
     #siteNav a:hover {
         text-decoration: none;
         color: #0080ff;
+    }
+    ul.socialLinks li a{
+        cursor: pointer;
     }
     ul.socialLinks li a:hover{
         color:#0088cc;
@@ -176,6 +178,7 @@ ul.socialLinks {
 }
 
 .companyLogo {
+    width:300px;
     margin: 0 auto;
     display: block;
     float: left;

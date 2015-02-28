@@ -10,10 +10,8 @@ var Home = React.createClass({
             menuToggle: false
         };
     },
-    componentWillMount() {
-        this.wow = new WOW().init();
-    },
     componentDidMount() {
+        this.wow = new WOW().init();
         // Used to track the enabling of hover effects
         var enableTimer = 0;
         /*
@@ -101,8 +99,8 @@ var Home = React.createClass({
             <div className="container resContainer wow fadeIn" data-wow-duration="3s" data-wow-offset="10">
                 <div className="row-fluid">
                     <h2> My Work </h2>
-                    <img className="companyLogo wow fadeInLeft" src={require('./assets/trapit-logo.svg')} width="300px" data-wow-duration="3s" />
-                    <p className="light">I&#039;m currently a software engineer at <a href="https://trap.it">Trapit</a>, a spin-off of <a href="http://www.sri.com/">SRI International</a> that uses artifical intelligence for content discovery and curation.</p>
+                    <img className="companyLogo wow fadeInLeft" src={require('./assets/trapit-logo.svg')} data-wow-duration="3s" />
+                    <p className="light res-center">I&#039;m currently a software engineer at <a href="https://trap.it">Trapit</a>, a spin-off of <a href="http://www.sri.com/">SRI International</a> that uses artifical intelligence for content discovery and curation.</p>
                     <p className="light center">My current weapons of choice include various modern Javascript MVC Frameworks (Backbone, Ember, Angular), Facebook React (as well as Flux Architecture), Clojurescript (Om and Reagent), Socket.IO, a variety of workflow tools like Gulp, Webpack, Jade Templating, Git, ES6 Harmony, and various unit testing frameworks (Jasmine and Jest). Of course I also enjoy coding server-side languages like Node, PHP, C/C++, and Java.</p>
                 </div>
             </div>

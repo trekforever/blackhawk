@@ -1,0 +1,45 @@
+{
+  "name": "wow",
+  "title": "WOW",
+  "version": "1.0.3",
+  "description": "Reveal CSS animation as you scroll down a page. By default, you can use it to trigger [animate.css](https://github.com/daneden/animate.css) animations. But you can easily change the settings to your favorite animation library.",
+  "keywords": [],
+  "homepage": "https://github.com/matthieua/WOW",
+  "author": {
+    "name": "Matthieu Aussaguel",
+    "email": "matthieu.aussaguel@gmail.com",
+    "url": "http://mynameismatthieu.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/matthieua/WOW.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matthieua/WOW/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://matthieuaussaguel.mit-license.org/"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-jasmine": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-growl": "latest"
+  },
+  "scripts": {
+    "test": "grunt travis"
+  },
+  "gitHead": "859ac32085ffc2e17f9a1fc1083981fd951a6613",
+  "readme": "# WOW.js [![Build Status](https://secure.travis-ci.org/matthieua/WOW.svg?branch=master)](http://travis-ci.org/matthieua/WOW)\n\nReveal CSS animation as you scroll down a page.\nBy default, you can use it to trigger [animate.css](https://github.com/daneden/animate.css) animations.\nBut you can easily change the settings to your favorite animation library.\n\nAdvantages:\n- Smaller than other JavaScript parallax plugins, like Scrollorama (they do fantastic things, but can be too heavy for simple needs)\n- Super simple to install, and works with animate.css, so if you already use it, that will be very fast to setup\n- Fast execution and lightweight code: the browser will like it ;-)\n- You can change the settings - [see below](#advanced-usage)\n\nFollow [@mattaussaguel](//twitter.com/mattaussaguel) for updates as WOW evolves.\n\n### [LIVE DEMO ➫](http://mynameismatthieu.com/WOW/)\n\n## Live examples\n- [MaterialUp](http://www.materialup.com)\n- [Fliplingo](https://www.fliplingo.com)\n- [Streamline Icons](http://www.streamlineicons.com)\n- [Microsoft Stories](http://www.microsoft.com/en-us/news/stories/garage/)\n\n\n## Version\n\n1.0.3\n\n## Documentation\n\nIt just take seconds to install and use WOW.js!\n[Read the documentation ➫](http://mynameismatthieu.com/WOW/docs.html)\n\n### Dependencies\n- [animate.css](https://github.com/daneden/animate.css)\n\n### Basic usage\n\n- HTML\n\n```html\n  <section class=\"wow slideInLeft\"></section>\n  <section class=\"wow slideInRight\"></section>\n```\n\n- JavaScript\n\n```javascript\nnew WOW().init();\n```\n\n### Advanced usage\n\n- HTML\n\n```html\n  <section class=\"wow slideInLeft\" data-wow-duration=\"2s\" data-wow-delay=\"5s\"></section>\n  <section class=\"wow slideInRight\" data-wow-offset=\"10\"  data-wow-iteration=\"10\"></section>\n```\n\n- JavaScript\n\n```javascript\nvar wow = new WOW(\n  {\n    boxClass:     'wow',      // animated element css class (default is wow)\n    animateClass: 'animated', // animation css class (default is animated)\n    offset:       0,          // distance to the element when triggering the animation (default is 0)\n    mobile:       true,       // trigger animations on mobile devices (default is true)\n    live:         true,       // act on asynchronously loaded content (default is true)\n    callback:     function(box) {\n      // the callback is fired every time an animation is started\n      // the argument that is passed in is the DOM node being animated\n    }\n  }\n);\nwow.init();\n```\n\n### Asynchronous content support\n\nIn IE 10+, Chrome 18+ and Firefox 14+, animations will be automatically\ntriggered for any DOM nodes you add after calling `wow.init()`. If you do not\nlike that, you can disable this by setting `live` to `false`.\n\nIf you want to support older browsers (e.g. IE9+), as a fallback, you can call\nthe `wow.sync()` method after you have added new DOM elements to animate (but\n`live` should still be set to `true`). Calling `wow.sync()` has no side\neffects.\n\n\n## Contribute\n\nThe library is written in CoffeeScript, please update `wow.coffee` file.\n\nWe use grunt to compile and minify the library:\n\nInstall needed libraries\n\n```\nnpm install\n```\n\nGet the compilation running in the background\n\n```\ngrunt watch\n```\n\nEnjoy!\n\n## Bug tracker\n\nIf you find a bug, please report it [here on Github](https://github.com/matthieua/WOW/issues)!\n\n## Developer\n\nDeveloped by Matthieu Aussaguel, [mynameismatthieu.com](http://mynameismatthieu.com)\n\n+ [@mattaussaguel](//twitter.com/mattaussaguel)\n+ [Github Profile](//github.com/matthieua)\n\n## Contributors\n\nThanks to everyone who has contributed to the project so far:\n\n- Attila Oláh - [@attilaolah](//twitter.com/attilaolah) - [Github Profile](//github.com/attilaolah)\n- [and many others](//github.com/matthieua/WOW/graphs/contributors)\n\nInitiated and designed by [Vincent Le Moign](//www.webalys.com/), [@webalys](//twitter.com/webalys)\n",
+  "readmeFilename": "README.md",
+  "_id": "wow@1.0.3",
+  "_shasum": "d43f042dcd44f9db0102b29095c60dd43f7150c7",
+  "_from": "../../../../var/folders/fh/xstp7t9n11b9mbsppj177lnw0000gn/T/npm-87568-978293b7/1425077485366-0.6698030235711485/859ac32085ffc2e17f9a1fc1083981fd951a6613",
+  "_resolved": "git+ssh://git@github.com:matthieua/WOW.git#859ac32085ffc2e17f9a1fc1083981fd951a6613"
+}
