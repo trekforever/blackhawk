@@ -36,6 +36,6 @@
     "url-loader": "^0.5.5",
     "webpack": "^1.3.2-beta9",
     "webpack-dev-server": "^1.4.7",
-    "wow": "0.0.6"
+    "wow": "git+ssh://git@github.com:matthieua/WOW.git"
   }
 }
