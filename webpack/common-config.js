@@ -14,7 +14,7 @@ module.exports = function(options) {
         "json": "json",
         "json5": "json5",
         "txt": "raw",
-        "png|jpg|jpeg|gif|svg": "url?limit=10000",
+        "png|jpg|jpeg|gif|svg": "url?limit=100000",
         "woff|woff2": "url?limit=100000",
         "ttf|eot|ico": "file",
         "html": "html"
@@ -60,6 +60,8 @@ module.exports = function(options) {
                 this.plugin("done", function(stats) {
                     var jsonStats = stats.toJson({
                         chunkModules: true,
+                        chunkOrigins: true,
+                        showModules: true,
                         exclude: excludeFromStats
                     });
                     jsonStats.publicPath = publicPath;

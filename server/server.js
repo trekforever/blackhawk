@@ -25,7 +25,7 @@ module.exports = function(options) {
     app.use("/_assets", express.static(path.join(__dirname, "..", "build", "public"), {
         maxAge: "200d" // We can cache them as they include hashes
     }));
-    app.use("/", express.static(path.join(__dirname, "..", "public"), {
+    app.use("/static/", express.static(path.join(__dirname, "..", "public"), {
     }));
     app.disable('x-powered-by');
     app.use(bodyParser.json());
