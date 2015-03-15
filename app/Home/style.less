@@ -103,7 +103,10 @@ p.subheader {
     margin: 0 -15px;
 }
 .navButton {
-    outline: 0;
+    outline: 0 !important;
+    &:active {
+        box-shadow: none;
+    }
     &:focus {
         outline:0;
     }
@@ -198,5 +201,6 @@ ul.socialLinks {
         display: block;
     }
 }
+
 
 @import "./responsive.less";
