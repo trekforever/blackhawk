@@ -21,7 +21,7 @@ module.exports = function(options) {
     };
     var stylesheetLoaders = {
         "css": "css",
-        "less": "css!less",
+        "less": "css!autoprefixer!less",
     };
     var additionalLoaders = [
          { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules|vendor/ }
