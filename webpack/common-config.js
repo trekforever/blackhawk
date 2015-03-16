@@ -6,7 +6,7 @@ var joinEntry = require("./ext/joinEntry");
 
 module.exports = function(options) {
     var entry = {
-        main: reactEntry("main"),
+        main: ['webpack-dev-server/client?http://localhost:2992/', 'webpack/hot/only-dev-server', './webpack/config/app'],
         // second: reactEntry("second")
     };
     var loaders = {
@@ -39,8 +39,8 @@ module.exports = function(options) {
     var extensions = ["", ".web.js", ".js", ".jsx"];
     var root = path.join(__dirname, "../app");
     var publicPath = options.devServer ?
-        "http://localhost:2992/_assets/" :
-        "/_assets/";
+        "http://localhost:2992/" :
+        "/";
     var output = {
         path: path.join(__dirname, "../build", options.prerender ? "prerender" : "public"),
         publicPath: publicPath,
@@ -102,9 +102,17 @@ module.exports = function(options) {
     if(options.separateStylesheet && !options.prerender) {
         plugins.push(new ExtractTextPlugin("[name].css" + (options.longTermCaching ? "?[contenthash]" : "")));
     }
+    if(options.hotComponents) {
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
     if(options.minimize) {
         plugins.push(
-            new webpack.optimize.UglifyJsPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false,
+                    drop_console: true
+                }
+            }),
             new webpack.optimize.DedupePlugin(),
             new webpack.DefinePlugin({
                 "process.env": {

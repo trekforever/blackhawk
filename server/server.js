@@ -22,7 +22,7 @@ module.exports = function(options) {
     var app = express();
     app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
     // serve the static assets
-    app.use("/_assets", express.static(path.join(__dirname, "..", "build", "public"), {
+    app.use("/", express.static(path.join(__dirname, "..", "build", "public"), {
         maxAge: "200d" // We can cache them as they include hashes
     }));
     app.use("/static/", express.static(path.join(__dirname, "..", "public"), {
@@ -34,9 +34,31 @@ module.exports = function(options) {
     // Note that there is no security in this example
     // Make sure your production server handles requests better!
 
+    // Webpack Dev Server
+    if(options.devServer) {
+        var Webpack = require('webpack');
+        var WebpackDevServer = require('webpack-dev-server');
+        var WebpackDevConfig = require('../webpack/dev-config');
+
+        var webpackDevServer = new WebpackDevServer(Webpack(WebpackDevConfig), {
+          publicPath  : "http://localhost:2992/",
+          contentBase : "http://localhost:8080/",
+          hot         : true,
+          progress    : true,
+          stats       : {
+            colors: true
+          }
+        });
+        webpackDevServer.listen(2992, function(err, result) {
+          if (err) {
+            console.log(err);
+          }
+        });
+        console.log("Webpack development web server started on port: 2992 ");
+    }
     // application
     app.get("/*", function(req, res) {
-        renderApplication(req.path, {}, SCRIPT_URL, STYLE_URL, COMMONS_URL, function(err, html) {
+        renderApplication(req.path, {devServer: options.devServer}, SCRIPT_URL, STYLE_URL, COMMONS_URL, function(err, html) {
             res.contentType = "text/html; charset=utf8";
             res.end(html);
         });
