@@ -26,7 +26,7 @@ export default React.createClass({
             <div className="container">
                 <img src={require("./assets/mainLogo.png")} className="portLogo" />
                 <div className="title">
-                    <h1 ref="titleMain">Xin Wei</h1>
+                    <h1 ref="titleMain"><Link to="/">Xin Wei</Link></h1>
                     <h4 ref="titleSub">Portfolio and Projects</h4>
                 </div>
             </div>

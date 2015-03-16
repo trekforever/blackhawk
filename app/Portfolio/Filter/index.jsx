@@ -7,7 +7,7 @@ import './style.less';
 export default React.createClass({
     componentDidMount() {
       Snabbt(this.getDOMNode(), {
-        delay:1000,
+        delay:2000,
         easing: 'ease',
         height: 49,
         fromHeight: 0,
