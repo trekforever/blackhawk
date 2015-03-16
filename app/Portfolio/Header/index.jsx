@@ -9,15 +9,15 @@ export default React.createClass({
       Snabbt(this.refs.titleMain.getDOMNode(), {
         delay:1000,
         easing: 'easeOut',
-        position:[0,-5,0],
-        duration: 1000
+        position:[0,-10,0],
+        duration: 500
       });
       Snabbt(this.refs.titleSub.getDOMNode(), {
         delay:1500,
         easing: 'easeOut',
         opacity: 1,
         fromOpacity: 0,
-        position:[0,-15,0],
+        position:[0,-25,0],
         duration: 500
       });
     },

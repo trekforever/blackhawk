@@ -6,7 +6,7 @@ var joinEntry = require("./ext/joinEntry");
 
 module.exports = function(options) {
     var entry = {
-        main: ['webpack-dev-server/client?http://localhost:2992/', 'webpack/hot/only-dev-server', './webpack/config/app'],
+        main: options.hotComponents ? ['webpack-dev-server/client?http://localhost:2992/', 'webpack/hot/only-dev-server', './webpack/config/app'] : './webpack/config/app',
         // second: reactEntry("second")
     };
     var loaders = {
