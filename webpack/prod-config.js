@@ -5,8 +5,5 @@ module.exports = [
         separateStylesheet: true,
         minimize: true,
         // devtool: "source-map",
-    }),
-    require("./common-config")({
-        prerender: true,
     })
 ];
