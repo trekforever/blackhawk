@@ -2,13 +2,15 @@ import React from 'react/addons'
 import {Link} from "react-router"
 import Spinner from 'Spinner'
 import _ from 'lodash'
-import jquery from 'jquery'
-import Isotope from 'isotope-layout/dist/isotope.pkgd'
-import ImagesLoaded from 'imagesloaded/imagesloaded.pkgd'
+import Isotope from 'isotope-layout'
+import ImagesLoaded from 'imagesloaded'
 
 import './projectList.less'
 
 export default React.createClass({
+    propTypes: {
+      projects : React.PropTypes.array.isRequired
+    },
     componentDidMount() {
       this.projects = new Isotope(this.refs.isotopeContainer.getDOMNode(), {
         itemSelector: '.queueItem',
@@ -42,6 +44,14 @@ export default React.createClass({
         this.projects.destroy();
       }
     },
+    renderTags(project) {
+      return <div className="tags">
+        <span className="label info">{project.type}</span>
+        { project.stacks.map((v,i) => {
+          return <span className="label" key={`label${i}`}>{v}</span>;
+        }) }
+      </div>;
+    },
     renderItem(project) {
       return <div className="queueItem">
         <article>
@@ -53,10 +63,7 @@ export default React.createClass({
           <summary>
             <h4>{project.title}</h4>
             <div className="brief">{project.brief}</div>
-            <div className="tags">
-              <span className="label info">{project.type}</span>
-              {/*tags*/}
-            </div>
+            { this.renderTags(project) }
           </summary>
         </article>
       </div>;

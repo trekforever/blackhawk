@@ -24,7 +24,9 @@ module.exports = function(options) {
         "less": "css!autoprefixer!less",
     };
     var additionalLoaders = [
-         { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules|vendor/ }
+         { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules|vendor/ },
+         { test: /isotope-layout/, loader: "imports?define=>false"},
+         { test: /imagesloaded/, loader: "imports?define=>false"}
     ];
     var alias = {
 
@@ -47,7 +49,6 @@ module.exports = function(options) {
         filename: "[name].js" + (options.longTermCaching && !options.prerender ? "?[chunkhash]" : ""),
         chunkFilename: (options.devServer ? "[id].js" : "[name].js") + (options.longTermCaching && !options.prerender ? "?[chunkhash]" : ""),
         sourceMapFilename: "debugging/[file].map",
-        libraryTarget: options.prerender ? "commonjs2" : undefined,
         pathinfo: options.debug
     };
     var excludeFromStats = [
