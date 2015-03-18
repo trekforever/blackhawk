@@ -2,7 +2,7 @@ import React from 'react/addons'
 import {Link} from "react-router"
 import Snabbt from "snabbt.js"
 
-import './style.less';
+import './header.less';
 
 export default React.createClass({
     componentDidMount() {

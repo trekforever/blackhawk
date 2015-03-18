@@ -9,3 +9,6 @@ export default React.createClass({
         </div>;
     }
 });
+
+//Animate in Lang Composition, start with translateX(-100%), opacity 0, and overflow hidden on parent
+//Once transitioned properly, add class to set overflow back to auto and display tooltips

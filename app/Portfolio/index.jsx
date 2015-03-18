@@ -10,7 +10,7 @@ import ProjectList from './ProjectList'
 import {portfolio as Actions} from 'actions'
 import Store from 'stores/portfolio-store'
 
-import './style.less'
+import './portfolio.less'
 
 export default React.createClass({
   componentDidMount() {
