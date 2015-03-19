@@ -1,25 +1,17 @@
 import Reflux from "reflux"
 import React from 'react/addons'
-import {RouteHandler} from "react-router"
-import {Link} from "react-router"
+import {State as RouterState, RouteHandler} from "react-router"
 import Header from './Header'
 import Filter from './Filter'
-import Spinner from 'Spinner'
-import ProjectList from './ProjectList'
 
-import {portfolio as Actions} from 'actions'
 import Store from 'stores/portfolio-store'
 
 import './portfolio.less'
 
 export default React.createClass({
-  componentDidMount() {
-    Actions.load();
-  },
   storeChangeListener(delta) {
-    this.setState({
-      projects: delta
-    });
+    // {projects: arr, currentProject: obj}
+    this.setState(delta);
   },
   getInitialState() {
     return {
@@ -30,15 +22,14 @@ export default React.createClass({
     if(!this.state.projects) {
       return <Spinner />;
     }
-    return <ProjectList projects={this.state.projects} />
   },
-  mixins: [Reflux.listenTo(Store, "storeChangeListener")],
+  mixins: [Reflux.listenTo(Store, "storeChangeListener"), RouterState],
   render() {
+      var projectId = this.getParams().id;
       return <div className="portfolio">
           <Header />
-          <Filter />
-          { this.renderList() }
-          <RouteHandler />
+          <Filter currentProject={this.state.currentProject} />
+          <RouteHandler projects={this.state.projects} currentProject={this.state.currentProject} />
       </div>;
   }
 });

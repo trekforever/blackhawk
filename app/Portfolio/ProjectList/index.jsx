@@ -4,14 +4,15 @@ import Spinner from 'Spinner'
 import _ from 'lodash'
 import Isotope from 'isotope-layout'
 import ImagesLoaded from 'imagesloaded'
+import {portfolio as Actions} from 'actions'
 
 import './projectList.less'
 
 export default React.createClass({
     propTypes: {
-      projects : React.PropTypes.array.isRequired
+      projects : React.PropTypes.array
     },
-    componentDidMount() {
+    initIsotope() {
       this.projects = new Isotope(this.refs.isotopeContainer.getDOMNode(), {
         itemSelector: '.queueItem',
         layoutMode: 'masonry',
@@ -30,13 +31,28 @@ export default React.createClass({
         this.projects.layout();
       })
     },
+    relayout() {
+      ImagesLoaded(this.refs.isotopeContainer.getDOMNode(), () => {
+        this.projects.reloadItems();
+        this.projects.layout();
+        this.projects.arrange();
+      });
+    },
+    componentDidMount() {
+      if(this.props.projects) {
+        this.initIsotope();
+      } else {
+        Actions.load();
+      }
+    },
     componentDidUpdate() {
+      if(!this.props.projects) {
+        return ;
+      }
       if(this.projects) {
-        ImagesLoaded(this.refs.isotopeContainer.getDOMNode(), () => {
-          this.projects.reloadItems();
-          this.projects.layout();
-          this.projects.arrange();
-        });
+        this.relayout();
+      } else {
+        this.initIsotope();
       }
     },
     componentWillUnmount() {
@@ -74,12 +90,18 @@ export default React.createClass({
           return {item};
         })
     },
+    renderBody() {
+      if(!this.props.projects) {
+        return <Spinner />;
+      }
+      return <div className="isotope-container" ref="isotopeContainer">
+        {this.renderList()}
+      </div>;
+    },
     render() {
         return <div className="queue">
             <div className="container">
-              <div className="isotope-container" ref="isotopeContainer">
-                {this.renderList()}
-              </div>
+              { this.renderBody() }
             </div>
         </div>;
     }
