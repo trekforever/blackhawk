@@ -9,6 +9,7 @@ if(!Object.assign)
 export default (
     <Route name="app" path="/" handler={require("./Application")}>
         <Route name="portfolio" path="/portfolio" handler={require('./Portfolio')}>
+            <DefaultRoute handler={require('./Portfolio/projectList')} />
             <Route name="projectItem" path="/portfolio/projects/:id" handler={require('./Portfolio/ProjectItem')} />
         </Route>
         <DefaultRoute name="home" handler={require("./Home")} />
