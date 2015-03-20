@@ -3,6 +3,8 @@ import {Link, State} from "react-router"
 import {portfolio as Actions} from 'actions'
 import Spinner from 'Spinner'
 
+import './projectItem.less'
+
 export default React.createClass({
     propTypes: {
       currentProject : React.PropTypes.object
@@ -21,7 +23,53 @@ export default React.createClass({
       if(!this.props.currentProject) {
         return <Spinner />;
       }
-      return <div className="container"><h1>{this.props.currentProject.title}</h1></div>
+      return (
+        <div className="container">
+          <div className="col-md-8 col-xs-12">
+            <div className="card">
+              <article>
+                <h2>
+                  <div className="btn-back" onClick={this.navigateHome} />
+                  { this.props.currentProject.title }
+                  <p className="sub">Last Updated on {this.props.currentProject.updated}</p>
+                </h2>
+                <p>{ this.props.currentProject.brief }</p>
+              </article>
+            </div>
+            <div className="card">
+              <article>
+                <h4>The Work</h4>
+                <p>{ this.props.currentProject.work }</p>
+              </article>
+            </div>
+            <div className="card">
+              <article>
+                <h4>The Challenge</h4>
+                <p>{this.props.currentProject.challenge}</p>
+              </article>
+            </div>
+          </div>
+          <div className="col-md-4 col-xs-12">
+            <div className="card">
+              <article>
+                <h4>Technologies Used</h4>
+                <p dangerouslySetInnerHTML = {{__html: this.props.currentProject.techs}} />
+                <br />
+                <h4>Project Vitals</h4>
+                <p dangerouslySetInnerHTML = {{__html: this.props.currentProject.vitals}} />
+                <br />
+                <span className="label info">{this.props.currentProject.type}</span>
+              </article>
+            </div>
+            <div className="card">
+              <article>
+                <h4>Features</h4>
+                <p dangerouslySetInnerHTML = {{__html: this.props.currentProject.features}} />
+              </article>
+            </div>
+          </div>
+        </div>
+      );
     },
     mixins: [State],
     render() {

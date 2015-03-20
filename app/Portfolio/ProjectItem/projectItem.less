@@ -1,0 +1,79 @@
+.projectItem {
+  margin-top: 40px;
+  .card article{
+    margin: 10px 0 20px;
+    border:1px solid #ccc;
+    background:white;
+    border-radius:3px;
+    padding:15px 20px;
+    h1, h2, h3, h4 {
+      margin: 0 0 10px;
+    }
+    .sub{
+      font-size:13px;
+      color:#9b9b9b;
+      padding-top: 6px;
+    }
+    .languageStats {
+      height: 12px;
+      margin: 0 -20px 5px;
+      .lang {
+        height:12px;
+        display:inline-block;
+        position:relative;
+        .tooltip {
+          top:-20px;
+          left:35%;
+          &.in{
+            opacity:0;
+          }
+        }
+        &:hover{
+          .tooltip {
+            opacity:1 !important;
+          }
+        }
+      }
+      .Php {
+        background-color: #e2431e;
+      }
+      .Javascript {
+        background-color: #e7711b;
+      }
+      .Html5Css3 {
+        background-color: #f1ca3a;
+      }
+      .C {
+       background-color: #1c91c0; 
+      }
+      .Ruby {
+        background-color: #43459d;
+      }
+      .Other {
+        background-color: #6f9654;
+      }
+    }
+    span {
+      &.label {
+        margin: 2px;
+        display:inline-block;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+        background-color: #A9ABAD;
+      }
+      &.info { background-color: #0f75da; }
+    }
+    .btn-back{
+      background-image: url('./assets/bghover.png');
+      background-position: left;
+      width: 25px;
+      height: 25px;
+      float: left;
+      margin-top: 3px;
+      margin-right: 8px;
+      &:hover{
+        cursor:pointer;
+        background-position:right;
+      }
+    }
+  }
+}
