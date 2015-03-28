@@ -29,7 +29,7 @@ export default React.createClass({
             <div className="card">
               <article>
                 <h2>
-                  <div className="btn-back" onClick={this.navigateHome} />
+                  <Link to="/portfolio"><div className="btn-back" /></Link>
                   { this.props.currentProject.title }
                   <p className="sub">Last Updated on {this.props.currentProject.updated}</p>
                 </h2>
