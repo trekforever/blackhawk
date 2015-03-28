@@ -22,6 +22,10 @@ export default React.createClass({
       });
     },
     componentDidUpdate() {
+      var sort = this.getQuery().sort;
+      if(sort) {
+        return ;
+      }
       if(this.isActive('projectItem')) {
         if(!this.props.currentProject) {
           return ;
@@ -37,6 +41,18 @@ export default React.createClass({
         })
       }
     },
+    cx(type) {
+      var sort = this.getQuery().sort;
+
+      if(!sort) {
+        return React.addons.classSet({
+          'active': type === "all"
+        })
+      }
+      if(sort.indexOf(type) >= 0) {
+        return 'active';
+      }
+    },
     renderBody() {
       // individual project
       if(this.isActive('projectItem')) {
@@ -49,10 +65,10 @@ export default React.createClass({
       return <div className="row">
         <div className="col-xs-12">
           <ul className="filterList" ref="filter">
-            <li className="active"><Link to="/portfolio">All Projects</Link></li>
-            <li><Link to="/portfolio?sort=web">Web Apps</Link></li>
-            <li><Link to="/portfolio?sort=desktop">Desktop Apps</Link></li>
-            <li><Link to="/portfolio?sort=mobile">Mobile Apps</Link></li>
+            <li className={this.cx('all')}><Link to="/portfolio?sort=all">All Projects</Link></li>
+            <li className={this.cx('web')}><Link to="/portfolio?sort=web">Web Apps</Link></li>
+            <li className={this.cx('desktop')}><Link to="/portfolio?sort=desktop">Desktop Apps</Link></li>
+            <li className={this.cx('mobile')}><Link to="/portfolio?sort=mobile">Mobile Apps</Link></li>
           </ul>
           <div className="layout">
             <div className="layout-toggle grid active"><i className="fa fa-th" /></div>

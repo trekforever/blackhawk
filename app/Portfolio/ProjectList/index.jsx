@@ -5,6 +5,7 @@ import _ from 'lodash'
 import Isotope from 'isotope-layout'
 import ImagesLoaded from 'imagesloaded'
 import {portfolio as Actions} from 'actions'
+import {State as RouterState} from "react-router"
 
 import './projectList.less'
 
@@ -12,10 +13,12 @@ export default React.createClass({
     propTypes: {
       projects : React.PropTypes.array
     },
+    mixins: [RouterState],
     initIsotope() {
-      this.projects = new Isotope(this.refs.isotopeContainer.getDOMNode(), {
-        itemSelector: '.queueItem',
-        layoutMode: 'masonry',
+      var sort = this.getQuery().sort;
+      var opts = {
+        itemSelector : '.queueItem',
+        layoutMode : 'masonry',
         masonry: {
           gutter: 20,
           isFitWidth: true
@@ -25,17 +28,34 @@ export default React.createClass({
         },
         visibleStyle: {
           opacity: 1
+        },
+        filter: (itemElm) => {
+          if(!sort || sort==="all") {
+            return true;
+          }
+          return itemElm.className.indexOf(sort) >= 0;
         }
-      })
+      }
+      this.projects = new Isotope(this.refs.isotopeContainer.getDOMNode(), opts)
       ImagesLoaded(this.refs.isotopeContainer.getDOMNode(), () => {
         this.projects.layout();
       })
     },
     relayout() {
       ImagesLoaded(this.refs.isotopeContainer.getDOMNode(), () => {
-        this.projects.reloadItems();
         this.projects.layout();
-        this.projects.arrange();
+        this.filterIsotope();
+      });
+    },
+    filterIsotope() {
+      var sort = this.getQuery().sort;
+      this.projects.arrange({
+        filter: (itemElm) => {
+            if(!sort || sort==="all") {
+              return true;
+            }
+            return itemElm.className.indexOf(sort) >= 0;
+          }
       });
     },
     componentDidMount() {
@@ -69,7 +89,7 @@ export default React.createClass({
       </div>;
     },
     renderItem(project) {
-      return <div className="queueItem">
+      return <div className={`queueItem ${_.camelCase(project.type)}`}>
         <article>
           <figure>
             <Link to={`/portfolio/projects/${_.kebabCase(project.title)}`}>
