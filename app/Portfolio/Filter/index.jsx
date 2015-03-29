@@ -12,8 +12,11 @@ export default React.createClass({
       router: React.PropTypes.func
     },
     componentDidMount() {
+      this.initSnabbt();
+    },
+    initSnabbt() {
       Snabbt(React.findDOMNode(this), {
-        delay:2000,
+        delay:100,
         easing: 'ease',
         height: 49,
         fromHeight: 0,
@@ -39,14 +42,6 @@ export default React.createClass({
       }
     },
     renderBody() {
-      // individual project
-      if(this.context.router.isActive('projectItem')) {
-        if(this.props.currentProject) {
-          return <div className="row"><div className="col-xs-12"><h1 className="title" ref="title">{this.props.currentProject.title}</h1></div></div>;
-        } else {
-          return <div></div>;
-        }
-      }
       return <div className="row">
         <div className="col-xs-12">
           <ul className="filterList" ref="filter">
@@ -59,10 +54,13 @@ export default React.createClass({
       </div>;
     },
     render() {
-        return <div className="filter">
-          <div className="container">
-            { this.renderBody() }
-          </div>
-        </div>;
+      if(this.context.router.isActive('projectItem')) {
+        return <div></div>;
+      }
+      return <div className="filter">
+        <div className="container">
+          { this.renderBody() }
+        </div>
+      </div>;
     }
 });

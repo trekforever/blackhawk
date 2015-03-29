@@ -29,9 +29,10 @@ export default React.createClass({
   mixins: [Reflux.listenTo(Store, "storeChangeListener")],
   render() {
       var projectId = this.context.router.getCurrentParams().id;
+      var filter = this.context.router.isActive('projectItem') ? (void 0) : <Filter currentProject={this.state.currentProject} />;
       return <div className="portfolio">
           <Header />
-          <Filter currentProject={this.state.currentProject} />
+          { filter }
           <RouteHandler projects={this.state.projects} currentProject={this.state.currentProject} />
       </div>;
   }
