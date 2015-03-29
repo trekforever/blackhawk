@@ -49,9 +49,8 @@ var Home = React.createClass({
         });
     },
     cxMenu() {
-        return React.addons.classSet({
-          'toggled': this.state.menuToggle
-        });
+        if(this.state.menuToggle) {return toggled;}
+        return ;
     },
     render() {
         return <div className="home">

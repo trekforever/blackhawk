@@ -9,8 +9,11 @@ export default React.createClass({
     propTypes: {
       currentProject : React.PropTypes.object
     },
+    contextTypes: {
+      router: React.PropTypes.func
+    },
     componentDidMount() {
-      Snabbt(this.getDOMNode(), {
+      Snabbt(React.findDOMNode(this), {
         delay:2000,
         easing: 'ease',
         height: 49,
@@ -20,6 +23,10 @@ export default React.createClass({
         opacity: 1,
         fromOpacity: 0
       });
+      Snabbt(React.findDOMNode(this.refs.filter), {
+        opacity: 1,
+        fromOpacity: 0
+      })
     },
     componentDidUpdate() {
       var sort = this.getQuery().sort;
@@ -30,12 +37,12 @@ export default React.createClass({
         if(!this.props.currentProject) {
           return ;
         }
-        Snabbt(this.refs.title.getDOMNode(), {
+        Snabbt(React.findDOMNode(this.refs.title), {
           opacity: 1,
           fromOpacity: 0
         })
       } else {
-        Snabbt(this.refs.filter.getDOMNode(), {
+        Snabbt(React.findDOMNode(this.refs.filter), {
           opacity: 1,
           fromOpacity: 0
         })
@@ -45,13 +52,16 @@ export default React.createClass({
       var sort = this.getQuery().sort;
 
       if(!sort) {
-        return React.addons.classSet({
-          'active': type === "all"
-        })
+        if(type==="all") { return "active"; }
+        return ;
       }
       if(sort.indexOf(type) >= 0) {
         return 'active';
       }
+    },
+    onList() {
+      console.log(this);
+      debugger;
     },
     renderBody() {
       // individual project
@@ -71,8 +81,8 @@ export default React.createClass({
             <li className={this.cx('mobile')}><Link to="/portfolio?sort=mobile">Mobile Apps</Link></li>
           </ul>
           <div className="layout">
-            <div className="layout-toggle grid active"><i className="fa fa-th" /></div>
-            <div className="layout-toggle list"><i className="fa fa-th-list" /></div>
+            <div className="layout-toggle grid active" onClick={this.onGrid}><i className="fa fa-th" /></div>
+            <div className="layout-toggle list" onClick={this.onList}><i className="fa fa-th-list" /></div>
           </div>
         </div>
       </div>;

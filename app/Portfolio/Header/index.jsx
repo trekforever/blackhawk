@@ -6,13 +6,13 @@ import './header.less';
 
 export default React.createClass({
     componentDidMount() {
-      Snabbt(this.refs.titleMain.getDOMNode(), {
+      Snabbt(React.findDOMNode(this.refs.titleMain), {
         delay:1000,
         easing: 'easeOut',
         position:[0,-10,0],
         duration: 500
       });
-      Snabbt(this.refs.titleSub.getDOMNode(), {
+      Snabbt(React.findDOMNode(this.refs.titleSub), {
         delay:1500,
         easing: 'easeOut',
         opacity: 1,

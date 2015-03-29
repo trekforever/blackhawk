@@ -57,6 +57,9 @@ export default React.createClass({
             return itemElm.className.indexOf(sort) >= 0;
           }
       });
+      if(this.projects.getFilteredItemElements().length === 0) {
+        console.log('nothing!');
+      }
     },
     componentDidMount() {
       if(this.props.projects) {
