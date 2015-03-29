@@ -9,14 +9,17 @@ export default React.createClass({
     propTypes: {
       currentProject : React.PropTypes.object
     },
+    contextTypes: {
+      router: React.PropTypes.func
+    },
     componentDidMount() {
-      var id = this.getParams().id
+      var id = this.context.router.getCurrentParams().id
       if(!this.props.currentProject) {
         Actions.loadProject(id);
       }
     },
     componentWillUnmount() {
-      var id = this.getParams().id
+      var id = this.context.router.getCurrentParams().id
       Actions.unloadProject(id);
     },
     renderBody() {
@@ -71,7 +74,6 @@ export default React.createClass({
         </div>
       );
     },
-    mixins: [State],
     render() {
         return <div className="projectItem">
             {this.renderBody()}

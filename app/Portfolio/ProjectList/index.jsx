@@ -13,9 +13,10 @@ export default React.createClass({
     propTypes: {
       projects : React.PropTypes.array
     },
-    mixins: [RouterState],
+    contextTypes: {
+      router: React.PropTypes.func
+    },
     initIsotope() {
-      var sort = this.getQuery().sort;
       var opts = {
         itemSelector : '.queueItem',
         layoutMode : 'masonry',
@@ -30,10 +31,10 @@ export default React.createClass({
           opacity: 1
         },
         filter: (itemElm) => {
-          if(!sort || sort==="all") {
+          if(!this._queries.sort || this._queries.sort==="all") {
             return true;
           }
-          return itemElm.className.indexOf(sort) >= 0;
+          return itemElm.className.indexOf(this._queries.sort) >= 0;
         }
       }
       this.projects = new Isotope(this.refs.isotopeContainer.getDOMNode(), opts)
@@ -48,18 +49,20 @@ export default React.createClass({
       });
     },
     filterIsotope() {
-      var sort = this.getQuery().sort;
       this.projects.arrange({
         filter: (itemElm) => {
-            if(!sort || sort==="all") {
+            if(!this._queries.sort || this._queries.sort ==="all") {
               return true;
             }
-            return itemElm.className.indexOf(sort) >= 0;
+            return itemElm.className.indexOf(this._queries.sort) >= 0;
           }
       });
       if(this.projects.getFilteredItemElements().length === 0) {
         console.log('nothing!');
       }
+    },
+    componentWillMount() {
+      this._queries = this.context.router.getCurrentQuery();
     },
     componentDidMount() {
       if(this.props.projects) {
@@ -69,6 +72,7 @@ export default React.createClass({
       }
     },
     componentDidUpdate() {
+      this._queries = this.context.router.getCurrentQuery();
       if(!this.props.projects) {
         return ;
       }
@@ -122,7 +126,7 @@ export default React.createClass({
       </div>;
     },
     render() {
-        return <div className="queue">
+        return <div className='queue'>
             <div className="container">
               { this.renderBody() }
             </div>
