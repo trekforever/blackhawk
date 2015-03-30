@@ -1,6 +1,5 @@
 import React from 'react/addons'
 import {Link} from "react-router"
-import Snabbt from "snabbt.js"
 
 import './filter.less';
 
@@ -10,25 +9,6 @@ export default React.createClass({
     },
     contextTypes: {
       router: React.PropTypes.func
-    },
-    componentDidMount() {
-      this.initSnabbt();
-    },
-    initSnabbt() {
-      Snabbt(React.findDOMNode(this), {
-        delay:100,
-        easing: 'ease',
-        height: 49,
-        fromHeight: 0,
-        duration: 500,
-      }).then({
-        opacity: 1,
-        fromOpacity: 0
-      });
-      Snabbt(React.findDOMNode(this.refs.filter), {
-        opacity: 1,
-        fromOpacity: 0
-      })
     },
     cx(type) {
       var sort = this.context.router.getCurrentQuery().sort;
