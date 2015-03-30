@@ -88,31 +88,26 @@ export default React.createClass({
       return <div className="tags">
         <span className="label info">{project.type}</span>
         { project.stacks.map((v,i) => {
-          return <span className="label" key={`label${i}`}>{v}</span>;
+          return <span className="label" key={i}>{v}</span>;
         }) }
       </div>;
     },
-    renderItem(project) {
-      return <div className={`queueItem ${_.camelCase(project.type)}`}>
-        <article>
-          <figure>
-            <Link to={`/portfolio/projects/${_.kebabCase(project.title)}`}>
-              <img ref="image" src={`/static/portfolioAssets/${project.picture}`} />
-            </Link>
-          </figure>
-          <summary>
-            <h4>{project.title}</h4>
-            <div className="brief">{project.brief}</div>
-            { this.renderTags(project) }
-          </summary>
-        </article>
-      </div>;
-    },
     renderList() {
-      return this.props.projects.map((project) => {
-        var item = this.renderItem(project);
-        return {item};
-      })
+      return this.props.projects.map((project, i) => 
+        <div key={i} className={`queueItem ${_.camelCase(project.type)}`}>
+          <article>
+            <figure>
+              <Link to={`/portfolio/projects/${_.kebabCase(project.title)}`}>
+                <img ref="image" src={`/static/portfolioAssets/${project.picture}`} />
+              </Link>
+            </figure>
+            <summary>
+              <h4>{project.title}</h4>
+              <div className="brief">{project.brief}</div>
+              { this.renderTags(project) }
+            </summary>
+          </article>
+      </div>)
     },
     renderBody() {
       if(!this.props.projects) {

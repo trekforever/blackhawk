@@ -27,14 +27,14 @@ export default React.createClass({
     generateLangComp() {
       var languages = JSON.parse(this.props.currentProject.languages);
       if(languages.length) {
-        return languages.map((item) => <LangComp data={item[1]} name={item[0]} tooltip={TOOLTIP_DEF[_.camelCase(item[0])]} />);
+        return languages.map((item, i) => <LangComp key={i} data={item[1]} name={item[0]} tooltip={TOOLTIP_DEF[_.camelCase(item[0])]} />);
       }
     },
     initSnabbt() {
       var ldom = React.findDOMNode(this.refs.languageStats);
       if(ldom) {
         Snabbt(ldom, {
-          delay:1000,
+          delay:500,
           easing: 'easeOut',
           position:[0,0,0],
           fromPosition: [-ldom.offsetWidth,0,0],
@@ -45,7 +45,7 @@ export default React.createClass({
         // set overflow back to inherit to allow tooltips
         _.delay(()=>{
           React.findDOMNode(this.refs.titleCard).style.overflow = "initial";
-        }, 2000);
+        }, 1500);
       }
     },
     componentDidMount() {
