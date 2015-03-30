@@ -37,13 +37,13 @@ export default React.createClass({
           return itemElm.className.indexOf(this._queries.sort) >= 0;
         }
       }
-      this.projects = new Isotope(this.refs.isotopeContainer.getDOMNode(), opts)
-      ImagesLoaded(this.refs.isotopeContainer.getDOMNode(), () => {
+      this.projects = new Isotope(React.findDOMNode(this.refs.isotopeContainer), opts)
+      ImagesLoaded(React.findDOMNode(this.refs.isotopeContainer), () => {
         this.projects.layout();
       })
     },
     relayout() {
-      ImagesLoaded(this.refs.isotopeContainer.getDOMNode(), () => {
+      ImagesLoaded(React.findDOMNode(this.refs.isotopeContainer), () => {
         this.projects.layout();
         this.filterIsotope();
       });
@@ -51,15 +51,12 @@ export default React.createClass({
     filterIsotope() {
       this.projects.arrange({
         filter: (itemElm) => {
-            if(!this._queries.sort || this._queries.sort ==="all") {
-              return true;
-            }
-            return itemElm.className.indexOf(this._queries.sort) >= 0;
+          if(!this._queries.sort || this._queries.sort ==="all") {
+            return true;
           }
+          return itemElm.className.indexOf(this._queries.sort) >= 0;
+        }
       });
-      if(this.projects.getFilteredItemElements().length === 0) {
-        console.log('nothing!');
-      }
     },
     componentWillMount() {
       this._queries = this.context.router.getCurrentQuery();
@@ -71,7 +68,7 @@ export default React.createClass({
         Actions.load();
       }
     },
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
       this._queries = this.context.router.getCurrentQuery();
       if(!this.props.projects) {
         return ;
@@ -112,10 +109,10 @@ export default React.createClass({
       </div>;
     },
     renderList() {
-        return this.props.projects.map((project) => {
-          var item = this.renderItem(project);
-          return {item};
-        })
+      return this.props.projects.map((project) => {
+        var item = this.renderItem(project);
+        return {item};
+      })
     },
     renderBody() {
       if(!this.props.projects) {
