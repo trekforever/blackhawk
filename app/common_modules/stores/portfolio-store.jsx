@@ -2,6 +2,7 @@ import Reflux from "reflux"
 import {portfolio as Actions} from 'actions'
 import request from 'request'
 import _ from 'lodash'
+import Immutable from 'immutable'
 
 const BASE_API = "https://galaxy-wei.firebaseio.com";
 
@@ -49,5 +50,16 @@ export default Reflux.createStore({
     } else {
       throw resp.error;
     }
+  },
+  onSearch(query) {
+    console.log('search',query);
+    //convert to Immutable structure
+    var searchData = Immutable.fromJS(this.projects.all);
+    var results = searchData.filter((x) => {
+      return x.get('title').toLowerCase().indexOf(query.toLowerCase()) >= 0;
+    });
+    this.trigger({
+      searchProjects: results.toJS()
+    });
   }
 });

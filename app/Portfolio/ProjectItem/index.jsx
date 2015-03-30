@@ -8,7 +8,7 @@ import _ from "lodash";
 import './projectItem.less'
 
 //CONSTS
-var TOOLTIP_DEF = {
+const TOOLTIP_DEF = {
   'php' : 'PHP',
   'javascript' : 'Javascript',
   'html5Css3' : 'HTML5/CSS3',
