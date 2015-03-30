@@ -4,4 +4,42 @@
 .portfolio {
   background: #f0f2f5;
   min-height:100%;
+  .bs-callout {
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #f0ad4e;
+    border-left-width: 5px;
+    border-radius: 3px;
+    border-left-color: #f0ad4e;
+    border-bottom: 0;
+    border-top: 0;
+    border-right: 0;
+    background: white;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,.5);
+    width: 400px;
+    position: fixed;
+    bottom: 5px;
+    right: -400px;
+    z-index: 11;
+    &.show{
+      right:5px;
+    }
+    &.hide{
+      transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+      transform: translate(300px, 0);
+      opacity: 0;
+    }
+    transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    h4 {
+      color: #f0ad4e;
+    }
+    .exit {
+      right: 10px;
+      position: absolute;
+      top: 10px;
+      &:hover{
+        cursor:pointer;
+      }
+    }
+  }
 }
