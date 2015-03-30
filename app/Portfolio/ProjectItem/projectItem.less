@@ -1,6 +1,10 @@
 .projectItem {
   margin-top: 30px;
   .card article{
+    &.titleCard {
+      padding-top:0;
+      overflow: hidden;
+    }
     margin: 10px 0 20px;
     border:1px solid #ccc;
     background:white;
@@ -20,7 +24,7 @@
       margin: 0 -20px 5px;
       .lang {
         height:12px;
-        display:inline-block;
+        float:left;
         position:relative;
         .tooltip {
           top:-20px;
@@ -35,22 +39,22 @@
           }
         }
       }
-      .Php {
+      .php {
         background-color: #e2431e;
       }
-      .Javascript {
+      .javascript {
         background-color: #e7711b;
       }
-      .Html5Css3 {
+      .html5Css3 {
         background-color: #f1ca3a;
       }
-      .C {
+      .c {
        background-color: #1c91c0; 
       }
-      .Ruby {
+      .ruby {
         background-color: #43459d;
       }
-      .Other {
+      .other {
         background-color: #6f9654;
       }
     }
