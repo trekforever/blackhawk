@@ -42,7 +42,7 @@ module.exports = function(options) {
 
         var webpackDevServer = new WebpackDevServer(Webpack(WebpackDevConfig), {
           publicPath  : "http://localhost:2992/",
-          contentBase : "http://localhost:8080/",
+          contentBase : "http://localhost:8081/",
           hot         : true,
           progress    : true,
           stats       : {
@@ -64,7 +64,7 @@ module.exports = function(options) {
         });
     });
 
-    var port = +(process.env.PORT || options.defaultPort || 8080);
+    var port = +(process.env.PORT || options.defaultPort || 8081);
     app.listen(port, function() {
         console.log("Server listening on port " + port);
     });

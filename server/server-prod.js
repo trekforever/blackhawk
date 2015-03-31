@@ -1,4 +1,4 @@
 require("./server")({
     separateStylesheet: true,
-    defaultPort: 8080
+    defaultPort: 8081
 });
