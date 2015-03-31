@@ -3,6 +3,7 @@ var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var loadersByExtension = require("./ext/loadersByExtension");
 var joinEntry = require("./ext/joinEntry");
+var fs = require('fs');
 
 module.exports = function(options) {
     var entry = {
@@ -66,7 +67,11 @@ module.exports = function(options) {
                         exclude: excludeFromStats
                     });
                     jsonStats.publicPath = publicPath;
-                    require("fs").writeFileSync(path.join(__dirname, "../build", "stats.json"), JSON.stringify(jsonStats));
+                    if(!fs.existsSync(path.join(__dirname, "../build")))
+                    {
+                        fs.mkdirSync(path.join(__dirname, "../build"));
+                    }
+                    fs.writeFileSync(path.join(__dirname, "../build", "stats.json"), JSON.stringify(jsonStats));
                 });
             }
         },
