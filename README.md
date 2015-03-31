@@ -21,5 +21,5 @@ This repo contains the code to run the website http://xin-wei.org
 |               | react-router   | Bluebird    |
 |               | Bootstrap      |             |
 |               | Isotope.js     |             |
-|               | Animate.css    |             |
+|               | Immutable.js   |             |
 |               | snabbt.js      |             |
