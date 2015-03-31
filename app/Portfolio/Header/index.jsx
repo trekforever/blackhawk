@@ -7,13 +7,13 @@ import './header.less';
 export default React.createClass({
     componentDidMount() {
       Snabbt(React.findDOMNode(this.refs.titleMain), {
-        delay:1000,
+        delay:2000,
         easing: 'easeOut',
         position:[0,-10,0],
         duration: 500
       });
       Snabbt(React.findDOMNode(this.refs.titleSub), {
-        delay:1500,
+        delay:2500,
         easing: 'easeOut',
         opacity: 1,
         fromOpacity: 0,

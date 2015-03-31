@@ -34,6 +34,7 @@ export default React.createClass({
       })
     },
     relayout() {
+      // hide initially
       ImagesLoaded(React.findDOMNode(this.refs.isotopeContainer), () => {
         this.projects.reloadItems();
         this.projects.layout();

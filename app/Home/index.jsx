@@ -106,7 +106,7 @@ var Home = React.createClass({
             <div className="row-fluid darkBg2 darkBg">
                 <div className="container resContainer wow fadeIn" data-wow-duration="3s">
                     <h2> Hobbies and Interests </h2>
-                    <p className="dark center">In my free time, I enjoy learning new languages, reading <a href="https://news.ycombinator.com/news">Hacker News</a>, solving Javascript puzzles, working on my side projects, and spending hours on Reddit (too addicting).
+                    <p className="dark center">In my free time, I enjoy learning new languages, reading <a href="https://news.ycombinator.com/news">Hacker News</a>, solving Javascript puzzles, working on my side projects, spending time on Reddit, and writing Yelp reviews (<a href="http://www.yelp.com/user_details?userid=UziJPRoSOgZwDZ2qXxrU3Q">Follow me on Yelp!</a>).
                         <br /><br />
                         But don&#039;t worry, I also spend plenty of time not near a computer as well! I enjoy hanging out with friends (food adventures, movies, music concerts, snowboarding, hiking, traveling, exploring new areas, board game nights), traveling to different states and countries, and going to various entrepreneurial/tech meet-ups in San Francisco (a good way to learn what other cool startups are doing)! And oh yes I love food adventures ... did I mention that already?
                     </p>
