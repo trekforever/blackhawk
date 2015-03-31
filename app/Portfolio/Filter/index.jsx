@@ -45,6 +45,10 @@ export default React.createClass({
       window.removeEventListener('click', this._clickListener, false);
     },
     onSearchChg(e) {
+      // reset nav
+      this.setState({
+        type: 'all'
+      });
       var value = e.target.value;
       QUERY_SEAR_THROT(value);
     },
