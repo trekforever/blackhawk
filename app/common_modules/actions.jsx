@@ -7,7 +7,8 @@ export default {
     "load": {asyncResult: true},
     "loadProject": {},
     "unloadProject": {},
-    "search": {}
+    "search": {},
+    "filter": {}
   })
 
 };

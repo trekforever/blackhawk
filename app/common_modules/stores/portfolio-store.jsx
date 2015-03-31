@@ -41,8 +41,8 @@ export default Reflux.createStore({
     resp.body.forEach((project) => {
       this.projects.cache[_.kebabCase(project.title)] = project;
     });
-    this.projects.all = resp.body;
-    this.trigger({ projects: this.projects.all }); 
+    this.projects.all = Immutable.fromJS(resp.body);
+    this.trigger({ projects: resp.body }); 
   },
   onLoadFailed(resp) {
     if(_.isString(resp)) {
@@ -53,13 +53,21 @@ export default Reflux.createStore({
   },
   onSearch(query) {
     console.log('search',query);
-    //convert to Immutable structure
-    var searchData = Immutable.fromJS(this.projects.all);
-    var results = searchData.filter((x) => {
-      return x.get('title').toLowerCase().indexOf(query.toLowerCase()) >= 0;
-    });
+    var results = this.projects.all.filter(x => x.get('title').toLowerCase().indexOf(query.toLowerCase()) >= 0);
     this.trigger({
-      searchProjects: results.toJS()
+      projects: results.toJS()
+    });
+  },
+  onFilter(type) {
+    var results;
+    if(type === "all") {
+      // return all
+      results = this.projects.all;
+    } else {
+      results = this.projects.all.filter(x => x.get('type').toLowerCase().indexOf(type.toLowerCase()) >= 0);
+    }
+    this.trigger({
+      projects: results.toJS()
     });
   }
 });

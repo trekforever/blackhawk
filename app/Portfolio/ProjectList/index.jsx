@@ -9,6 +9,8 @@ import {State as RouterState} from "react-router"
 
 import './projectList.less'
 
+var ISOTOPE_COUNT = 0;
+
 export default React.createClass({
     propTypes: {
       projects : React.PropTypes.array
@@ -23,43 +25,20 @@ export default React.createClass({
         masonry: {
           gutter: 20,
           isFitWidth: true
-        },
-        hiddenStyle: {
-          opacity: 0
-        },
-        visibleStyle: {
-          opacity: 1
-        },
-        filter: (itemElm) => {
-          if(!this._queries.sort || this._queries.sort==="all") {
-            return true;
-          }
-          return itemElm.className.indexOf(this._queries.sort) >= 0;
         }
       }
       this.projects = new Isotope(React.findDOMNode(this.refs.isotopeContainer), opts)
       ImagesLoaded(React.findDOMNode(this.refs.isotopeContainer), () => {
         this.projects.layout();
+        ISOTOPE_COUNT = this.projects.getItemElements().length;
       })
     },
     relayout() {
       ImagesLoaded(React.findDOMNode(this.refs.isotopeContainer), () => {
+        this.projects.reloadItems();
         this.projects.layout();
-        this.filterIsotope();
+        this.projects.arrange();
       });
-    },
-    filterIsotope() {
-      this.projects.arrange({
-        filter: (itemElm) => {
-          if(!this._queries.sort || this._queries.sort ==="all") {
-            return true;
-          }
-          return itemElm.className.indexOf(this._queries.sort) >= 0;
-        }
-      });
-    },
-    componentWillMount() {
-      this._queries = this.context.router.getCurrentQuery();
     },
     componentDidMount() {
       if(this.props.projects) {
@@ -69,7 +48,6 @@ export default React.createClass({
       }
     },
     componentDidUpdate(prevProps, prevState) {
-      this._queries = this.context.router.getCurrentQuery();
       if(!this.props.projects) {
         return ;
       }
@@ -93,7 +71,8 @@ export default React.createClass({
       </div>;
     },
     renderList() {
-      return this.props.projects.map((project, i) => 
+      var projects = this.props.projects;
+      return projects.map((project, i) => 
         <div key={i} className={`queueItem ${_.camelCase(project.type)}`}>
           <article>
             <figure>
