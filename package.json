@@ -14,8 +14,7 @@
   "dependencies": {
     "animate.css": "git+ssh://git@github.com:daneden/animate.css.git",
     "autoprefixer-loader": "^1.2.0",
-    "babel-core": "^4.4.5",
-    "babel-loader": "^4.0.0",
+    "babel-loader": "^4.3.0",
     "bluebird": "^2.9.14",
     "body-parser": "^1.9.3",
     "bootstrap": "^3.3.2",

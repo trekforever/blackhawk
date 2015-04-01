@@ -25,7 +25,7 @@ module.exports = function(options) {
         "less": "css!autoprefixer!less",
     };
     var additionalLoaders = [
-         { test: /\.jsx$|\.js$/, loader: "babel", exclude:/node_modules|vendor/ },
+         { test: /\.jsx$|\.js$/, loader: "babel?stage=0", exclude:/node_modules|vendor/ },
          { test: /isotope-layout/, loader: "imports?define=>false"},
          { test: /imagesloaded/, loader: "imports?define=>false"}
     ];
